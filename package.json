@@ -1,6 +1,6 @@
 {
   "name": "testergame",
-  "description": "This game is used as a testcase in automatic testing" 
+  "description": "This game is used as a testcase in automatic testing",
   "version": "0.0.1",
   "author": {
     "name": "Stefano Balietti",
