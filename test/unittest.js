@@ -31,11 +31,11 @@ function doUnitTest() {
 	});
 
 	describe('info bar', function () {
-		it('should be in the DOM', function() {
+		it('should be in the DOM', function () {
 			expect(document.getElementById('gn_header')).to.exist;
 		});
 
-		it('should contain 3 boxes', function() {
+		it('should contain 3 widgets', function () {
 			expect(document.getElementById('visualstate_fieldset')).to.exist;
 			expect(document.getElementById('visualtimer_fieldset')).to.exist;
 			expect(document.getElementById('statedisplay_fieldset')).to.exist;
@@ -43,5 +43,53 @@ function doUnitTest() {
 	});
 
 	describe('caching', function () {
+		var cachedURIs = ['html/pregame.html',
+                          'html/instructions.html',
+                          'html/bidder.html',
+                          'html/resp.html',
+                          'html/solo.html',
+                          'html/postgame.html',
+                          'html/ended.html'];
+
+		it('should have preloaded given pages', function () {
+			var idx;
+
+			expect(W.cache).to.exist;
+
+			for (idx in cachedURIs) {
+				expect(W.cache).to.have.property(cachedURIs[idx])
+					.with.property('contents').that.exists;
+			}
+		});
+
+			/*
+			W.loadFrame('html/instructions.html', function () {
+				checkIFrameInstructionsContent();
+				done();
+			});
+			*/
 	});
-};
+}
+
+function checkIFrameInstructionsContent() {
+	var iframe = document.getElementById('mainframe');
+	var documentElement = (iframe.contentDocument ? iframe.contentDocument
+		: iframe.contentWindow.document).documentElement;
+	var body = documentElement.getElementsByTagName('body')[0];
+
+	it('should have the correct content', function () {
+			expect(iframe).to.exist;
+			expect(documentElement).to.exist;
+			expect(body).to.exist;
+			expect(body).to.have.property('children').with.length.of.at.least(2);
+
+			expect(body.children[0].tagName).to.equal('H1');
+			expect(body.children[0].innerHTML.trim()).to.equal(
+				'Good! We are about to start...');
+
+			expect(body.children[1].tagName).to.equal('DIV');
+			expect(body.children[1].innerHTML.trim()).to.equal(
+				'The game has not started yet. We are waiting for all the ' +
+				'players to connect.');
+	});
+}

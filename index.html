@@ -62,14 +62,23 @@
 		});
 		
 		//node.socket.setSocketType('SocketIo');
-		node.connect("/testergame");
 		  
-    	node.play(new Ultimatum());
-    
-        // Run tests:
-        doUnitTest();
-        if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
-        else { mocha.run(); }
+        W.preCache(['html/pregame.html',
+                    'html/instructions.html',
+                    'html/bidder.html',
+                    'html/resp.html',
+                    'html/solo.html',
+                    'html/postgame.html',
+                    'html/ended.html'],
+                    function () {
+                        node.connect('/testergame');
+                        node.play(new Ultimatum());
+
+                        // Run tests:
+                        doUnitTest();
+                        if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+                        else { mocha.run(); }
+                    });
 	}
 </script>
 
