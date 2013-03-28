@@ -1,9 +1,10 @@
 <!doctype html>
-<title>Ultimatum Game</title>
+<title>Testergame</title>
 
 <!-- Loading  nodeGame libraries and CSS -->
 <script src="/socket.io/socket.io.js"></script> 
 <script src="/javascripts/nodegame-full.js" charset="utf-8"></script>
+<link rel="stylesheet" href="./node_modules/mocha/mocha.css" />
 <link rel='stylesheet' href='/stylesheets/player.css'></link>
 <!-- end -->
 
@@ -12,6 +13,18 @@
 <!-- end -->
 
 <body>
+
+<!-- Initializing mocha-phantomjs -->
+<div id="mocha"></div>
+<script src="./node_modules/mocha/mocha.js"></script>
+<script src="./node_modules/chai/chai.js"></script>
+<script>
+    mocha.ui('bdd');
+    mocha.reporter('html');
+    var expect = chai.expect;
+</script>
+<!-- end -->
+
 <div id="root"></div>
 <script>
   window.onload = function () {
@@ -48,11 +61,20 @@
 		});
 		
 		//node.socket.setSocketType('SocketIo');
-		node.connect("/tester");
+		node.connect("/testergame");
 		  
     	node.play(new Ultimatum());
     
     
 	}
 </script>
+
+<!-- Running the tests -->
+<script src="./test/unittest.js"></script>
+<script>
+    if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+    else { mocha.run(); }
+</script>
+<!-- end -->
+
 </body>
