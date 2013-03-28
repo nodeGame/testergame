@@ -2,10 +2,10 @@
 <title>Testergame</title>
 
 <!-- Loading  nodeGame libraries and CSS -->
-<script src="/socket.io/socket.io.js"></script> 
-<script src="/javascripts/nodegame-full.js" charset="utf-8"></script>
+<script src="http://localhost:8080/socket.io/socket.io.js"></script> 
+<script src="http://localhost:8080/javascripts/nodegame-full.js" charset="utf-8"></script>
 <link rel="stylesheet" href="./node_modules/mocha/mocha.css" />
-<link rel='stylesheet' href='/stylesheets/player.css'></link>
+<link rel='stylesheet' href='http://localhost:8080/stylesheets/player.css'></link>
 <!-- end -->
 
 <!-- Loading the Ultimatum game -->
@@ -22,13 +22,15 @@
     mocha.ui('bdd');
     mocha.reporter('html');
     var expect = chai.expect;
+    var should = chai.should();
 </script>
+<script src="./test/unittest.js"></script>
 <!-- end -->
 
 <div id="root"></div>
 <script>
   window.onload = function () {
-		  
+
 		// Configure the Client
 			
 		var conf = {
@@ -65,16 +67,11 @@
 		  
     	node.play(new Ultimatum());
     
-    
+        // Run tests:
+        doUnitTest();
+        if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+        else { mocha.run(); }
 	}
 </script>
-
-<!-- Running the tests -->
-<script src="./test/unittest.js"></script>
-<script>
-    if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
-    else { mocha.run(); }
-</script>
-<!-- end -->
 
 </body>

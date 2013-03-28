@@ -1,20 +1,9 @@
-describe("DOM Tests", function () {
-    var el = document.createElement("div");
-    el.id = "myDiv";
-    el.innerHTML = "Hi there!";
-    el.style.background = "#ccc";
-    document.body.appendChild(el);
- 
-    var myEl = document.getElementById('myDiv');
-    it("is in the DOM", function () {
-        expect(myEl).to.not.equal(null);
-    });
- 
-    it("is a child of the body", function () {
-        expect(myEl.parentElement).to.equal(document.body);
-    });
- 
-    it("has the right text", function () {
-        expect(myEl.innerHTML).to.equal("Hi there!");
-    });
-});
+function doUnitTest() {
+	describe('iframe', function () {
+		var iframe = document.getElementById('mainframe');
+
+		it('is in the DOM', function () {
+			should.exist(iframe);
+		});
+	});
+};
