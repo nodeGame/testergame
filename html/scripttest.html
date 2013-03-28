@@ -1,0 +1,20 @@
+<!doctype html>
+<title>SCRIPTTEST</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<body>
+	<div id="root">
+		<h1>Testing script</h1>
+		This page is for testing the correct loading of scripts with caching.
+	</div>
+
+    <script>
+        var w = window.parent;
+
+        if (!w.scripttest1) {
+            w.scripttest1 = 0;
+        }
+        else {
+            w.scripttest1 ++;
+        }
+    </script>
+</body>

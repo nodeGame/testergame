@@ -1,6 +1,7 @@
 function doUnitTest() {
+	var iframe = document.getElementById('mainframe');
+
 	describe('iframe', function () {
-		var iframe = document.getElementById('mainframe');
 		var documentElement;
 		var body;
 
@@ -62,34 +63,24 @@ function doUnitTest() {
 			}
 		});
 
-			/*
+		it('should be able to correctly display a cached page', function (done) {
 			W.loadFrame('html/instructions.html', function () {
-				checkIFrameInstructionsContent();
+				var documentElement = (iframe.contentDocument ? iframe.contentDocument
+					: iframe.contentWindow.document).documentElement;
+				var body = documentElement.getElementsByTagName('body')[0];
+
+				expect(iframe).to.exist;
+				expect(documentElement).to.exist;
+				expect(body).to.exist;
+				expect(body).to.have.property('children').that.is.not.empty;
+
+				expect(body.children[0].tagName).to.equal('H1');
+				expect(body.children[0].innerHTML.trim()).to.equal(
+					'Instructions of the Ultimatum Game. ' +
+					'Please read them carefully');
+
 				done();
-			});
-			*/
-	});
-}
-
-function checkIFrameInstructionsContent() {
-	var iframe = document.getElementById('mainframe');
-	var documentElement = (iframe.contentDocument ? iframe.contentDocument
-		: iframe.contentWindow.document).documentElement;
-	var body = documentElement.getElementsByTagName('body')[0];
-
-	it('should have the correct content', function () {
-			expect(iframe).to.exist;
-			expect(documentElement).to.exist;
-			expect(body).to.exist;
-			expect(body).to.have.property('children').with.length.of.at.least(2);
-
-			expect(body.children[0].tagName).to.equal('H1');
-			expect(body.children[0].innerHTML.trim()).to.equal(
-				'Good! We are about to start...');
-
-			expect(body.children[1].tagName).to.equal('DIV');
-			expect(body.children[1].innerHTML.trim()).to.equal(
-				'The game has not started yet. We are waiting for all the ' +
-				'players to connect.');
+			}, { cache: { loadMode: 'cache' } });
+		});
 	});
 }
