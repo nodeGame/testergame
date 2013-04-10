@@ -63,7 +63,7 @@ function doUnitTest() {
 			}
 		});
 
-		it('should be able to correctly display a cached page', function (done) {
+		it('should display a cached page correctly', function (done) {
 			W.loadFrame('html/instructions.html', function () {
 				var documentElement = (iframe.contentDocument ? iframe.contentDocument
 					: iframe.contentWindow.document).documentElement;
@@ -81,6 +81,41 @@ function doUnitTest() {
 
 				done();
 			}, { cache: { loadMode: 'cache' } });
+		});
+
+		it('should cache/load scripted pages correctly', function (done) {
+			W.loadFrame('html/scripttest.html', function () {
+				expect((iframe.contentDocument ? iframe.contentDocument
+					: iframe.contentWindow.document).
+					getElementById('scripttest_field').innerHTML).to.equal('1');
+
+				W.loadFrame('html/scripttest.html', function () {
+					var contentDocument = iframe.contentDocument ? iframe.contentDocument
+						: iframe.contentWindow.document;
+					var testfield = contentDocument.getElementById('scripttest_field');
+
+					expect(testfield.innerHTML).to.equal('2');
+					testfield.innerHTML = '0';
+
+					W.loadFrame('html/scripttest.html', function () {
+						var contentDocument = iframe.contentDocument ? iframe.contentDocument
+							: iframe.contentWindow.document;
+						var testfield = contentDocument.getElementById('scripttest_field');
+
+						expect(testfield.innerHTML).to.equal('3');
+						testfield.innerHTML = '0';
+
+						W.loadFrame('html/scripttest.html', function () {
+							expect((iframe.contentDocument ? iframe.contentDocument
+								: iframe.contentWindow.document).
+								getElementById('scripttest_field').innerHTML)
+								.to.equal('1');
+
+							done();
+						}, { cache: { loadMode: 'cache', storeMode: 'onLoad' } });
+					}, { cache: { loadMode: 'cache', storeMode: 'onClose' } });
+				}, { cache: { loadMode: 'cache', storeMode: 'onLoad' } });
+			}, { cache: { loadMode: 'reload', storeMode: 'onLoad' } });
 		});
 	});
 }

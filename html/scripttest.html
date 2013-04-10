@@ -4,17 +4,11 @@
 <body>
 	<div id="root">
 		<h1>Testing script</h1>
-		This page is for testing the correct loading of scripts with caching.
+		<p>This page is for testing the correct loading of scripts with caching.</p>
+		<p id="scripttest_field">0</p>
 	</div>
 
-    <script>
-        var w = window.parent;
-
-        if (!w.scripttest1) {
-            w.scripttest1 = 0;
-        }
-        else {
-            w.scripttest1 ++;
-        }
-    </script>
+	<script>
+		document.getElementById('scripttest_field').innerHTML ++;
+	</script>
 </body>
