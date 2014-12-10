@@ -8,7 +8,7 @@
 
 module.exports = {
     gamePaths: {
-        logic:    'game.logic.js',
-        player:   'game.player.js'
+        logic:    'game.empty.js',
+        player:   'game.empty.js'
     }
 };

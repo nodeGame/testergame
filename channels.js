@@ -7,6 +7,11 @@ module.exports = [
     {
         name: 'testergame',
         admin: 'testergame/admin',
-        player: 'testergame'
+        player: 'testergame',
+
+        waitingRoom: {
+            logicPath:  'game.room.js',
+            name:       'waitRoom'
+        }
     }
 ];
