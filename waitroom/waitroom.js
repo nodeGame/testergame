@@ -3,6 +3,6 @@
  * Copyright(c) 2014 Stefano Balietti
  * MIT Licensed
  */
-module.exports = function(node, channel, room) {
+module.exports = function() {
     return {};
 };
