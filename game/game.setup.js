@@ -8,12 +8,8 @@
  */
 
 module.exports = function(settings, stages) {
-    
     var game = {};
-
     game.debug = true;
-
     game.verbosity = 1;
-
     return game;
 };

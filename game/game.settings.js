@@ -7,8 +7,5 @@
  */
 
 module.exports = {
-   gamePaths: {
-       logic: 'game.empty.js',
-       player: 'game.empty.js'
-   }
+   foo: 'bar'
 };

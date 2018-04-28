@@ -1,25 +1,26 @@
 {
-  "name": "testergame",
-  "description": "This game is used as a testcase in automatic testing",
-  "version": "0.0.1",
-  "author": {
-    "name": "Stefano Balietti",
-    "email": "sbalietti@ethz.ch",
-    "url": "http://www.nodegame.org"
-  }
-,
-  "keywords": [
-    "testing"
-  ]
-,
-  "repository": {
-    "type": "git",
-     "url": "git://github.com/nodegame/testergame.git"
-  },
-  "license": "MIT/X11"
-,
-  "engines": {
-    "node": "*",
-    "nodegame": ">= 0.9.0"
-  }
+    "name": "testergame",
+    "description": "This game is used as a testcase in automatic testing",
+    "version": "4.0.0",
+    "author": {
+        "name": "Stefano Balietti",
+        "email": "ste@nodegame.org",
+        "url": "http://www.nodegame.org"
+    }
+    ,
+    "keywords": [
+        "testing",
+        "nodegame"
+    ]
+    ,
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/nodegame/testergame.git"
+    },
+    "license": "MIT/X11"
+    ,
+    "engines": {
+        "node": "*",
+        "nodegame": ">= 4.0.0"
+    }
 }
